@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savor | Premium Food Delivery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Login & Address View -->
+    <div id="login-view" class="view-container active">
+        <div class="glass-card login-card">
+            <h1 class="brand-title">Savor<span class="dot">.</span></h1>
+            <p class="subtitle">Experience culinary excellence delivered to your door.</p>
+
+            <form id="login-form">
+                <div class="input-group">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="username" placeholder="Username" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    <input type="text" id="address" placeholder="Delivery Address" required>
+                </div>
+                <button type="submit" class="btn-primary">Enter Savor</button>
+            </form>
+        </div>
+        <!-- Background decorative elements -->
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <!-- Main Application View -->
+    <div id="app-view" class="view-container hidden">
+        <nav class="top-nav">
+            <div class="logo">Savor<span class="dot">.</span></div>
+            <div class="nav-links">
+                <a href="#menu" class="active">Menu</a>
+                <a href="#reviews">Reviews</a>
+            </div>
+            <div class="user-profile">
+                <button id="cart-btn" class="icon-btn" style="position: relative;">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="cart-count" class="badge">0</span>
+                </button>
+                <span id="user-display">User</span>
+                <div class="avatar"><i class="fa-solid fa-user"></i></div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h2>Hungry for extraordinary?</h2>
+                    <p>Discover the finest local menus and get them delivered hot, fast, and fresh to <span
+                            id="current-address-display" class="highlight">your address</span>.</p>
+                </div>
+            </section>
+
+            <!-- Menu Section -->
+            <section id="menu" class="content-section">
+                <div class="section-header">
+                    <h3>Explore the Menu</h3>
+                    <div class="filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="bestseller">Bestsellers</button>
+                        <button class="filter-btn" data-filter="comfort">Comfort</button>
+                    </div>
+                </div>
+                <div id="menu-grid" class="grid-container">
+                    <!-- Food items will be injected here via JS -->
+                </div>
+            </section>
+
+            <!-- Reviews Section -->
+            <section id="reviews" class="content-section">
+                <div class="section-header">
+                    <h3>Customer Reviews</h3>
+                </div>
+
+                <div class="review-layout">
+                    <div class="add-review glass-card">
+                        <h4>Leave a Review</h4>
+                        <form id="review-form">
+                            <input type="text" id="review-item" placeholder="What did you order?" required>
+                            <div class="rating-select">
+                                <i class="fa-regular fa-star" data-rating="1"></i>
+                                <i class="fa-regular fa-star" data-rating="2"></i>
+                                <i class="fa-regular fa-star" data-rating="3"></i>
+                                <i class="fa-regular fa-star" data-rating="4"></i>
+                                <i class="fa-regular fa-star" data-rating="5"></i>
+                            </div>
+                            <input type="hidden" id="selected-rating" value="0">
+                            <textarea id="review-text" placeholder="Share your experience..." rows="3"
+                                required></textarea>
+                            <button type="submit" class="btn-secondary">Submit Review</button>
+                        </form>
+                    </div>
+
+                    <div id="reviews-list" class="reviews-container">
+                        <!-- Reviews will be injected here via JS -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- AI Chatbot Widget -->
+    <div id="chatbot-widget" class="chatbot closed">
+        <div class="chat-header">
+            <div class="ai-avatar">
+                <i class="fa-solid fa-robot"></i>
+                <div class="status-dot"></div>
+            </div>
+            <div class="header-info">
+                <h4>Savor AI</h4>
+                <p>Online & Ready</p>
+            </div>
+            <button id="toggle-chat" class="icon-btn"><i class="fa-solid fa-chevron-up"></i></button>
+        </div>
+
+        <div class="chat-body" id="chat-body">
+            <div class="message ai">
+                <div class="msg-bubble">Hi there! I am Savor AI. I can help you with your doubts, ordering food,
+                    changing your address, or even recommend food based on your mood! How are you feeling today?</div>
+            </div>
+            <!-- Messages injected here -->
+        </div>
+
+        <div class="suggested-prompts" id="suggested-prompts">
+            <button class="prompt-chip" data-prompt="How do I order?">How do I order?</button>
+            <button class="prompt-chip" data-prompt="Change my address">Change my address</button>
+            <button class="prompt-chip" data-prompt="I feel sad, recommend food">I feel sad</button>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Ask me anything...">
+            <button id="send-btn" class="icon-btn primary"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div id="cart-drawer" class="drawer">
+        <div class="drawer-header">
+            <h3>Your Order</h3>
+            <button id="close-cart" class="icon-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-body" id="cart-items">
+            <!-- Cart items injected here -->
+            <div class="empty-cart-msg">Your cart is empty.</div>
+        </div>
+        <div class="drawer-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">₹0</span>
+            </div>
+            <button id="checkout-btn" class="btn-primary" disabled>Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="modal-overlay hidden">
+        <div class="glass-card modal-content">
+            <div class="modal-header">
+                <h3>Checkout</h3>
+                <button id="close-checkout" class="icon-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="payment-summary">
+                    <p>Deliver to: <strong id="checkout-address"></strong></p>
+                    <p>Amount to Pay: <strong id="checkout-amount" class="highlight"></strong></p>
+                </div>
+
+                <form id="payment-form">
+                    <h4>Payment Details</h4>
+                    <div class="payment-methods">
+                        <label class="radio-label">
+                            <input type="radio" name="payment" value="card" checked> <i
+                                class="fa-regular fa-credit-card"></i> Card
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="payment" value="upi"> <i class="fa-brands fa-google-pay"></i> UPI
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="payment" value="cod"> <i class="fa-solid fa-money-bill"></i> Cash
+                        </label>
+                    </div>
+
+                    <div id="card-details" class="payment-details-section">
+                        <div class="input-group">
+                            <i class="fa-solid fa-credit-card"></i>
+                            <input type="text" placeholder="Card Number" pattern="[0-9]{16}" title="16 digits" required>
+                        </div>
+                        <div style="display: flex; gap: 1rem;">
+                            <div class="input-group" style="flex: 1;">
+                                <i class="fa-regular fa-calendar"></i>
+                                <input type="text" placeholder="MM/YY" required>
+                            </div>
+                            <div class="input-group" style="flex: 1;">
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" placeholder="CVV" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="margin-top: 1.5rem;">Pay Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
